@@ -1,4 +1,4 @@
-const config = require("./config.json");
+require("./server.js");
 const fs = require("node:fs");
 const path = require("node:path");
 const { Client, GatewayIntentBits, ActivityType, MessageMentions, Collection } = require("discord.js");
@@ -20,9 +20,9 @@ for (const file of commandFiles) {
 const cooldowns = new Collection();
 
 client.on("ready", () => {
-	console.log("Logged in as " + client.user.tag);
+	console.log(`Logged in as ${client.user.tag}`);
 	setInterval(() => {
-		console.log("Logged in as " + client.user.tag);
+		console.log(`Logged in as ${client.user.tag}`);
 	}, 10000);
 });
 
@@ -37,7 +37,7 @@ client.on("messageCreate", (message) => {
 
 	const args = message.content.slice(matchedPrefix.length).trim().split(/ +/);
 	const commandName = args.shift().toLowerCase();
-	const command = client.commands.get(commandName) || client.commands.find((cmd) => cmd.aliases && cmd.aliases.includes(commandName));
+	const command = client.commands.get(commandName) || client.commands.find((cmd) => cmd.aliases?.includes(commandName));
 	if (!command) return;
 
 	if (!cooldowns.has(command.name)) {
