@@ -21,9 +21,6 @@ const cooldowns = new Collection();
 
 client.on("ready", () => {
 	console.log(`Logged in as ${client.user.tag}`);
-	setInterval(() => {
-		console.log(`Logged in as ${client.user.tag}`);
-	}, 10000);
 });
 
 client.on("messageCreate", (message) => {
