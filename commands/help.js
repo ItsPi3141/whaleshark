@@ -8,18 +8,18 @@ module.exports = {
 				new EmbedBuilder().setTitle("Help").addFields(
 					{
 						name: "General",
-						value: "`ping`, `info`"
+						value: "`ping`, `info`",
 					},
 					{
 						name: "Fun",
-						value: "`say`, `apod`, `xkcd`, `f`"
+						value: "`say`, `apod`, `xkcd`, `f`",
 					},
 					{
 						name: "Utility",
-						value: "`poll`, `lookup`, `latex`, `raw`, `escape`"
+						value: "`poll`, `lookup`, `latex`, `raw`, `escape`",
 					}
-				)
-			]
+				),
+			],
 		});
-	}
+	},
 };

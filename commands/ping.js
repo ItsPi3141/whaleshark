@@ -15,15 +15,15 @@ module.exports = {
 			"Nothing matters.",
 			"You're going to die some day, perhaps soon.",
 			"Existence is a lie.",
-			"We are all already dead."
+			"We are all already dead.",
 		];
-		message.reply(config.emojis.loading + " " + placeholders[Math.floor(Math.random() * placeholders.length)]).then((res) => {
+		message.reply(`${config.emojis.loading} ${placeholders[Math.floor(Math.random() * placeholders.length)]}`).then((res) => {
 			const roundtrip = Math.round(res.createdTimestamp - message.createdTimestamp);
-			var ping = Math.round(message.client.ws.ping);
-			if (ping == -1) {
-				ping = Math.round(roundtrip / 3 + Math.random() * 10 - 5);
+			let ping = Math.round(message.client.ws.ping);
+			if (ping === -1) {
+				ping = "N/A";
 			}
 			res.edit(`ws latency: \`${ping}ms\` | round trip: \`${roundtrip}ms\` | Pong`);
 		});
-	}
+	},
 };

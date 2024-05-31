@@ -15,11 +15,11 @@ module.exports = {
 						.setDescription(res.alt)
 						.setImage(res.img)
 						.setFooter({
-							text: "xkcd • Comic #" + res.num + " • " + [res.month, res.day, res.year].join("/")
+							text: `xkcd • Comic #${res.num} • ${[res.month, res.day, res.year].join("/")}`,
 						})
-						.setColor(0xecf0f1)
-				]
+						.setColor(0xecf0f1),
+				],
 			});
 		});
-	}
+	},
 };

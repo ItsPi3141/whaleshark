@@ -4,9 +4,9 @@ module.exports = {
 	name: "latex",
 	cooldown: 1,
 	execute(message, args) {
-		if (args.length == 0) {
+		if (args.length === 0) {
 			message.reply({
-				embeds: [new EmbedBuilder().setDescription("Renders a LaTeX expression\n```\nws latex <text>\n```")]
+				embeds: [new EmbedBuilder().setDescription("Renders a LaTeX expression\n```\nws latex <text>\n```")],
 			});
 		} else {
 			message.reply({
@@ -23,10 +23,10 @@ module.exports = {
 								.replaceAll("_", "\\_")
 								.replaceAll("#", "\\#")
 						)
-						.setImage("https://latex.codecogs.com/gif.image?\\inline&space;\\huge&space;\\dpi{300}\\bg{white}" + args.join(" "))
-						.setColor(0xcfd8dd)
-				]
+						.setImage(`https://latex.codecogs.com/gif.image?\\inline&space;\\huge&space;\\dpi{300}\\bg{white}${args.join(" ")}`)
+						.setColor(0xcfd8dd),
+				],
 			});
 		}
-	}
+	},
 };

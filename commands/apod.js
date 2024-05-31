@@ -3,7 +3,7 @@ const config = require("../config.json");
 const apod_module = require("nasa-apod");
 const apod = new apod_module.Client({
 	apiKey: "523p5hPYHGzafYGLCkqa54kKMTV2vbP0XcPxkcLm",
-	conceptTags: true
+	conceptTags: true,
 });
 
 module.exports = {
@@ -18,14 +18,14 @@ module.exports = {
 						.setDescription(res.explanation)
 						.setImage(res.url)
 						.setFooter({
-							text: "NASA Astronomy Picture of the Day • " + res.date
+							text: `NASA Astronomy Picture of the Day • ${res.date}`,
 						})
 						.setAuthor({
-							name: res.copyright.replaceAll("\n", "")
+							name: res.copyright.replaceAll("\n", ""),
 						})
-						.setColor(0x212121)
-				]
+						.setColor(0x212121),
+				],
 			});
 		});
-	}
+	},
 };
