@@ -6,7 +6,7 @@ module.exports = {
 	execute(message, args) {
 		if (args.length == 0) {
 			message.reply({
-				embeds: [new EmbedBuilder().setDescription("Returns the text after escaping special characters with a backslash\n```\nws escape <text>\n```")]
+				embeds: [new EmbedBuilder().setDescription("Returns the text after escaping special characters with a backslash\n```\nws escape <text>\n```")],
 			});
 		} else {
 			message.reply({
@@ -19,18 +19,18 @@ module.exports = {
 								.replaceAll("\\", "\\\\")
 								.replaceAll("`", "\\`")
 								.replaceAll("|", "\\|")
-								.replaceAll("~", "\\`")
+								.replaceAll("~", "\\~")
 								.replaceAll("*", "\\*")
 								.replaceAll("_", "\\_")
-								.replaceAll("#", "\\#")
+								.replaceAll("#", "\\#"),
 						},
 						{
 							name: "Rendered",
-							value: args.join(" ")
+							value: args.join(" "),
 						}
-					)
-				]
+					),
+				],
 			});
 		}
-	}
+	},
 };
