@@ -10,22 +10,24 @@ module.exports = {
 			});
 		} else {
 			message.reply({
-				embeds: [
-					new EmbedBuilder()
-						.setDescription(
-							args
-								.join(" ")
-								.replaceAll("\\", "\\\\")
-								.replaceAll("`", "\\`")
-								.replaceAll("|", "\\|")
-								.replaceAll("~", "\\`")
-								.replaceAll("*", "\\*")
-								.replaceAll("_", "\\_")
-								.replaceAll("#", "\\#")
-						)
-						.setImage(`https://latex.codecogs.com/gif.image?\\inline&space;\\huge&space;\\dpi{300}\\bg{white}${encodeURIComponent(args.join(" "))}`)
-						.setColor(0xcfd8dd),
-				],
+				embeds: args
+					.join(" ")
+					.split("\n")
+					.map((eq) => {
+						return new EmbedBuilder()
+							.setDescription(
+								eq
+									.replaceAll("\\", "\\\\")
+									.replaceAll("`", "\\`")
+									.replaceAll("|", "\\|")
+									.replaceAll("~", "\\`")
+									.replaceAll("*", "\\*")
+									.replaceAll("_", "\\_")
+									.replaceAll("#", "\\#")
+							)
+							.setImage(`https://latex.codecogs.com/gif.image?\\inline&space;\\huge&space;\\dpi{300}\\bg{white}${encodeURIComponent(eq)}`)
+							.setColor(0xcfd8dd);
+					}),
 			});
 		}
 	},
