@@ -1,6 +1,8 @@
 const config = require("../config.json");
 const encode3y3 = require("../3y3.js");
 
+const uniqueId = Date.now();
+
 module.exports = {
 	name: "chat",
 	cooldown: 1,
@@ -19,7 +21,7 @@ module.exports = {
 					},
 					body: JSON.stringify({
 						prompt: `${message.author.tag}: ${args.join(" ")}`,
-						channelId: `${message.channel.id}`,
+						channelId: `${message.channel.id}-${uniqueId}`,
 					}),
 					method: "POST",
 				})
