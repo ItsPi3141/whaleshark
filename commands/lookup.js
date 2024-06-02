@@ -1,4 +1,3 @@
-const fetch = require("node-fetch").default;
 const { EmbedBuilder } = require("discord.js");
 
 // https://api.duckduckgo.com/?q=dog&format=json&skip_disambig=1
@@ -28,7 +27,6 @@ module.exports = {
 									if (ubjson.list.length === 0) {
 										reply.edit("❌ No results found");
 									} else {
-										console.log(ubjson.list[0].definition);
 										reply.edit({
 											content: "",
 											embeds: [
