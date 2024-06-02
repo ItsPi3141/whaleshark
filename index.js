@@ -33,7 +33,7 @@ client.on("messageCreate", async (message) => {
 	if (message.reference) {
 		const repliedTo = await message.channel.messages.fetch(message.reference.messageId);
 		if (repliedTo.content.endsWith(encode3y3.encode("ai"))) {
-			return chatCommand.execute(message);
+			return chatCommand.execute(message, message.content.split(" "));
 		}
 	}
 
