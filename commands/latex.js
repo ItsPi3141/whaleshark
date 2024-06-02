@@ -23,7 +23,7 @@ module.exports = {
 								.replaceAll("_", "\\_")
 								.replaceAll("#", "\\#")
 						)
-						.setImage(`https://latex.codecogs.com/gif.image?\\inline&space;\\huge&space;\\dpi{300}\\bg{white}${args.join(" ")}`)
+						.setImage(`https://latex.codecogs.com/gif.image?\\inline&space;\\huge&space;\\dpi{300}\\bg{white}${encodeURIComponent(args.join(" "))}`)
 						.setColor(0xcfd8dd),
 				],
 			});
