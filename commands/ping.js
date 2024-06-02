@@ -21,7 +21,7 @@ module.exports = {
 			const roundtrip = Math.round(res.createdTimestamp - message.createdTimestamp);
 			let ping = Math.round(message.client.ws.ping);
 			if (ping === -1) {
-				ping = "N/A";
+				ping = "unknown ";
 			}
 			res.edit(`ws latency: \`${ping}ms\` | round trip: \`${roundtrip}ms\` | Pong`);
 		});
