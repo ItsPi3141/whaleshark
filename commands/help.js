@@ -15,6 +15,10 @@ module.exports = {
 						value: "`say`, `apod`, `xkcd`, `f`",
 					},
 					{
+						name: "AI",
+						value: "`chat`, `image`",
+					},
+					{
 						name: "Utility",
 						value: "`lookup`, `latex`, `escape`",
 					}
