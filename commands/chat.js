@@ -1,7 +1,7 @@
 const config = require("../config.json");
 const encode3y3 = require("../3y3.js");
 
-const uniqueId = Date.now();
+let uniqueId = Date.now();
 
 module.exports = {
 	name: "chat",
@@ -31,5 +31,8 @@ module.exports = {
 					});
 			});
 		}
+	},
+	reloadUniqueId: () => {
+		uniqueId = Date.now();
 	},
 };
