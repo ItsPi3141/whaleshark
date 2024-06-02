@@ -11,7 +11,7 @@ module.exports = {
 	execute(message, args) {
 		message.reply(`${config.emojis.loading} Searching...`).then((reply) => {
 			try {
-				fetch(`https://api.duckduckgo.com/?q=${args.join(" ")}&format=json&skip_disambig=1`).then((res) => {
+				fetch(`https://api.duckduckgo.com/?q=${encodeURIComponent(args.join(" "))}&format=json&skip_disambig=1`).then((res) => {
 					res.json().then((json) => {
 						if (json.AbstractText) {
 							reply.edit({
@@ -23,7 +23,7 @@ module.exports = {
 								],
 							});
 						} else {
-							fetch(`https://api.urbandictionary.com/v0/define?term=${args.join(" ")}`).then((ubres) => {
+							fetch(`https://api.urbandictionary.com/v0/define?term=${encodeURIComponent(args.join(" "))}`).then((ubres) => {
 								ubres.json().then((ubjson) => {
 									if (ubjson.list.length === 0) {
 										reply.edit("❌ No results found");
@@ -33,8 +33,7 @@ module.exports = {
 											content: "",
 											embeds: [
 												new EmbedBuilder()
-													// biome-ignore lint/style/useTemplate: <explanation>
-													.setTitle("Search result for " + args.join(" "))
+													.setTitle(`Search result for ${args.join(" ")}`)
 													.setDescription(
 														`### Definition\n${ubjson.list[0].definition
 															.replaceAll("[", "")
