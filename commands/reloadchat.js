@@ -6,6 +6,7 @@ module.exports = {
 	execute(message, args) {
 		if (message.author.id === process.env.OWNER_ID) {
 			reloadUniqueId();
+			message.react("✅");
 		}
 	},
 };
