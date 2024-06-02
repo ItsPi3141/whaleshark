@@ -1,10 +1,13 @@
 require("./server.js");
 const fs = require("node:fs");
 const path = require("node:path");
+const encode3y3 = require("./3y3.js");
 const { Client, GatewayIntentBits, ActivityType, MessageMentions, Collection } = require("discord.js");
 const client = new Client({
 	intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent],
 });
+
+const chatCommand = require("./commands/chat.js");
 
 // UTIL FUNCTIONS
 const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -23,9 +26,16 @@ client.on("ready", () => {
 	console.log(`Logged in as ${client.user.tag}`);
 });
 
-client.on("messageCreate", (message) => {
+client.on("messageCreate", async (message) => {
 	if (!message.guild) return;
 	if (message.author.bot) return;
+
+	if (message.reference) {
+		const repliedTo = await message.channel.messages.fetch(message.reference.messageId);
+		if (repliedTo.content.endsWith(encode3y3.encode("ai"))) {
+			return chatCommand.execute(message);
+		}
+	}
 
 	const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex("ws")})\\s*`);
 	if (!prefixRegex.test(message.content)) return;
