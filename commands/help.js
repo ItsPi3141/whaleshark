@@ -16,7 +16,7 @@ module.exports = {
 					},
 					{
 						name: "Utility",
-						value: "`poll`, `lookup`, `latex`, `raw`, `escape`",
+						value: "`lookup`, `latex`, `escape`",
 					}
 				),
 			],
