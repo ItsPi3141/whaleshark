@@ -37,7 +37,7 @@ client.on("messageCreate", async (message) => {
 		}
 	}
 
-	const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex("ws")})\\s*`);
+	const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex("ws")})\\s*`, "i");
 	if (!prefixRegex.test(message.content)) return;
 
 	const [, matchedPrefix] = message.content.match(prefixRegex);
