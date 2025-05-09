@@ -12,9 +12,11 @@ module.exports = {
 	execute(message) {
 		message.channel.send("🇫").then((newmsg) => {
 			setTimeout(() => {
-				newmsg.edit(`**${message.author.tag}** has paid their respects`).then((res) => {
-					res.react("🇫");
-				});
+				newmsg
+					.edit(`**${message.author.tag}** has paid their respects`)
+					.then((res) => {
+						res.react("🇫");
+					});
 			}, 1000);
 		});
 	},

@@ -2,9 +2,19 @@ require("./server.js");
 const fs = require("node:fs");
 const path = require("node:path");
 const encode3y3 = require("./3y3.js");
-const { Client, GatewayIntentBits, ActivityType, MessageMentions, Collection } = require("discord.js");
+const {
+	Client,
+	GatewayIntentBits,
+	ActivityType,
+	MessageMentions,
+	Collection,
+} = require("discord.js");
 const client = new Client({
-	intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent],
+	intents: [
+		GatewayIntentBits.Guilds,
+		GatewayIntentBits.GuildMessages,
+		GatewayIntentBits.MessageContent,
+	],
 });
 
 const chatCommand = require("./commands/chat.js");
@@ -14,9 +24,12 @@ const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 // LOAD COMMANDS
 client.commands = new Collection();
-const commandFiles = fs.readdirSync(path.join(__dirname, "commands")).filter((file) => file.endsWith(".js"));
+const commandFiles = fs
+	.readdirSync(path.join(__dirname, "commands"))
+	.filter((file) => file.endsWith(".js"));
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
+	if (command.disabled) continue;
 	client.commands.set(command.name, command);
 }
 
@@ -31,20 +44,27 @@ client.on("messageCreate", async (message) => {
 	if (message.author.bot) return;
 
 	if (message.reference) {
-		const repliedTo = await message.channel.messages.fetch(message.reference.messageId);
+		const repliedTo = await message.channel.messages.fetch(
+			message.reference.messageId,
+		);
 		if (repliedTo.content.endsWith(encode3y3.encode("ai"))) {
 			return chatCommand.execute(message, message.content.split(" "));
 		}
 	}
 
-	const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex("ws")})\\s*`, "i");
+	const prefixRegex = new RegExp(
+		`^(<@!?${client.user.id}>|${escapeRegex("ws")})\\s*`,
+		"i",
+	);
 	if (!prefixRegex.test(message.content)) return;
 
 	const [, matchedPrefix] = message.content.match(prefixRegex);
 
 	const args = message.content.slice(matchedPrefix.length).trim().split(/ +/);
 	const commandName = args.shift().toLowerCase();
-	const command = client.commands.get(commandName) || client.commands.find((cmd) => cmd.aliases?.includes(commandName));
+	const command =
+		client.commands.get(commandName) ||
+		client.commands.find((cmd) => cmd.aliases?.includes(commandName));
 	if (!command) return;
 
 	if (!cooldowns.has(command.name)) {

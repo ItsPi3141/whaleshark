@@ -5,7 +5,11 @@ const encode = (/**@type {string}*/ text) => {
 
 	const output = [];
 	for (const char of codePoints) {
-		output.push(String.fromCodePoint(char + (0x00 < char && char < 0x7f ? 0xe0000 : 0)).toString());
+		output.push(
+			String.fromCodePoint(
+				char + (0x00 < char && char < 0x7f ? 0xe0000 : 0),
+			).toString(),
+		);
 	}
 
 	return output.join("");
@@ -16,7 +20,11 @@ const decode = (/**@type {string}*/ text) => {
 
 	const output = [];
 	for (const char of codePoints) {
-		output.push(String.fromCodePoint(char - (0xe0000 < char && char < 0xe007f ? 0xe0000 : 0)).toString());
+		output.push(
+			String.fromCodePoint(
+				char - (0xe0000 < char && char < 0xe007f ? 0xe0000 : 0),
+			).toString(),
+		);
 	}
 
 	return output.join("");

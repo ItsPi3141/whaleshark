@@ -10,7 +10,9 @@ module.exports = {
 				new EmbedBuilder()
 					.setDescription(args.join(" "))
 					.setThumbnail(
-						args.join(" ").length < 24 ? "https://cdn.discordapp.com/attachments/1152644249997824053/1153048338187419820/placeholder.png" : null
+						args.join(" ").length < 24
+							? "https://cdn.discordapp.com/attachments/1152644249997824053/1153048338187419820/placeholder.png"
+							: null,
 					),
 			],
 		});

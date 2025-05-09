@@ -6,7 +6,11 @@ module.exports = {
 	execute(message, args) {
 		if (args.length === 0) {
 			message.reply({
-				embeds: [new EmbedBuilder().setDescription("Renders a LaTeX expression\n```\nws latex <text>\n```")],
+				embeds: [
+					new EmbedBuilder().setDescription(
+						"Renders a LaTeX expression\n```\nws latex <text>\n```",
+					),
+				],
 			});
 		} else {
 			message.reply({
@@ -23,9 +27,11 @@ module.exports = {
 									.replaceAll("~", "\\`")
 									.replaceAll("*", "\\*")
 									.replaceAll("_", "\\_")
-									.replaceAll("#", "\\#")
+									.replaceAll("#", "\\#"),
 							)
-							.setImage(`https://latex.codecogs.com/gif.image?\\inline&space;\\huge&space;\\dpi{300}\\bg{white}${encodeURIComponent(eq)}`)
+							.setImage(
+								`https://latex.codecogs.com/gif.image?\\inline&space;\\huge&space;\\dpi{300}\\bg{white}${encodeURIComponent(eq)}`,
+							)
 							.setColor(0xcfd8dd);
 					}),
 			});

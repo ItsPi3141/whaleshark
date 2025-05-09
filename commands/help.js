@@ -21,7 +21,7 @@ module.exports = {
 					{
 						name: "Utility",
 						value: "`lookup`, `latex`, `escape`",
-					}
+					},
 				),
 			],
 		});
