@@ -10,9 +10,10 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"discord.js": "^14.13.0",
-		"express": "^4.19.2",
+		"discord.js": "^14.19.3",
+		"express": "^4.21.2",
 		"nasa-apod": "^0.2.0",
 		"xkcd-api": "^1.2.0"
-	}
+	},
+	"packageManager": "yarn@4.9.1"
 }
