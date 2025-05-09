@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require("discord.js");
+const { EmbedBuilder, AttachmentBuilder } = require("discord.js");
 const config = require("../config.json");
 const apod_module = require("nasa-apod");
 const apod = new apod_module.Client({
@@ -17,7 +17,8 @@ module.exports = {
 				.setFooter({
 					text: `NASA Astronomy Picture of the Day • ${res.date}`,
 				})
-				.setColor(0x212121);
+				.setColor(0x212121)
+				.setURL("https://apod.nasa.gov/");
 			let content = "";
 			if (res.copyright) {
 				embed.setAuthor({
@@ -28,7 +29,9 @@ module.exports = {
 				embed.setImage(res.url);
 			} else {
 				if (res.url.includes("youtube")) {
-					embed.setImage(`https://i.ytimg.com/vi/${res.url.split("?")[0].split("/").slice(-1)[0]}/maxresdefault.jpg`);
+					embed.setImage(
+						`https://i.ytimg.com/vi/${res.url.split("?")[0].split("/").slice(-1)[0]}/maxresdefault.jpg`,
+					);
 					embed.setURL(res.url);
 				} else {
 					content = res.url;

@@ -17,7 +17,8 @@ module.exports = {
 						.setFooter({
 							text: `xkcd • Comic #${res.num} • ${[res.month, res.day, res.year].join("/")}`,
 						})
-						.setColor(0xecf0f1),
+						.setColor(0xecf0f1)
+						.setURL(`https://xkcd.com/${res.num}`),
 				],
 			});
 		});
