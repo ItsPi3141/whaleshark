@@ -96,7 +96,15 @@ client.on("messageCreate", async (message) => {
 client.login(process.env.TOKEN);
 
 // dont crash
-process.on("unhandledRejection", (reason, p) => {});
-process.on("uncaughtException", (err, origin) => {});
-process.on("uncaughtExceptionMonitor", (err, origin) => {});
-process.on("multipleResolves", (type, promise, reason) => {});
+process.on("unhandledRejection", (...args) => {
+	console.error(...args);
+});
+process.on("uncaughtException", (...args) => {
+	console.error(...args);
+});
+process.on("uncaughtExceptionMonitor", (...args) => {
+	console.error(...args);
+});
+process.on("multipleResolves", (...args) => {
+	console.error(...args);
+});
