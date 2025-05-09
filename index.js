@@ -105,6 +105,4 @@ process.on("uncaughtException", (...args) => {
 process.on("uncaughtExceptionMonitor", (...args) => {
 	console.error(...args);
 });
-process.on("multipleResolves", (...args) => {
-	console.error(...args);
-});
+process.on("multipleResolves", () => {});
